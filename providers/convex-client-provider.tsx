@@ -3,7 +3,7 @@ import { ClerkProvider, useAuth, SignIn } from "@clerk/nextjs";
 import {
     AuthLoading,
     Authenticated,
-
+    Unauthenticated,
     ConvexReactClient,
 } from "convex/react"
 import { ConvexProviderWithClerk } from "convex/react-clerk";
@@ -27,6 +27,12 @@ export const ConvexClientProvider = ({ children }: ConvexClientProviderProps) =>
                     {children}
                 </Authenticated>
 
+                <Unauthenticated>
+                    <div className="flex flex-col items-center justify-center min-h-screen w-full">
+                        <SignIn />
+                    </div>
+                </Unauthenticated>
+
                 <AuthLoading>
                     <div className="flex flex-col items-center justify-center min-h-screen w-full">
                         Loading...
@@ -37,3 +43,4 @@ export const ConvexClientProvider = ({ children }: ConvexClientProviderProps) =>
         </ClerkProvider>
     )
 }
+
